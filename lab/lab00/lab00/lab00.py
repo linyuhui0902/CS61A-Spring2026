@@ -5,5 +5,5 @@ def twenty_twenty_six():
     >>> twenty_twenty_six()
     2026
     """
-    return 2000+5**2+2
+    return 2000+5**2+1
 
