@@ -195,6 +195,9 @@ def always_roll(n):
 
     # BEGIN PROBLEM 6
     "*** YOUR CODE HERE ***"
+    def non_strategy(score,opponent_score):
+        return n
+    return non_strategy
     # END PROBLEM 6
 
 
@@ -227,6 +230,15 @@ def is_always_roll(strategy, goal=GOAL):
     """
     # BEGIN PROBLEM 7
     "*** YOUR CODE HERE ***"
+    m,record=0,strategy(0,0)
+    while m < goal :
+        n=0
+        while n< goal:
+            if strategy(m,n)!=record:
+                return False
+            n+=1
+        m+=1
+    return True
     # END PROBLEM 7
 
 
@@ -241,9 +253,15 @@ def make_averaged(original_function, times_called=1000):
     >>> averaged_dice(1, dice)  # The avg of 10 4's, 10 2's, 10 5's, and 10 1's
     3.0
     """
-
     # BEGIN PROBLEM 8
     "*** YOUR CODE HERE ***"
+    def averaged(*args):
+        times,result=0,0
+        while times < times_called:
+           result+=original_function(*args)
+           times+=1
+        return result/times_called
+    return averaged
     # END PROBLEM 8
 
 
@@ -257,6 +275,15 @@ def max_scoring_num_rolls(dice=six_sided, times_called=1000):
     """
     # BEGIN PROBLEM 9
     "*** YOUR CODE HERE ***"
+    k,max_averagedscore=1,0
+    max_score_num=1
+    while k <= 10 :
+        record=make_averaged(roll_dice,times_called)(k,dice) #注意不要多次调用，会造成多投骰子
+        if  record> max_averagedscore:
+            max_averagedscore=record
+            max_score_num=k
+        k+=1
+    return max_score_num
     # END PROBLEM 9
 
 
