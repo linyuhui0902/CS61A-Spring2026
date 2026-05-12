@@ -42,6 +42,12 @@ def boar_brawl(player_score, opponent_score):
     """
     # BEGIN PROBLEM 2
     "*** YOUR CODE HERE ***"
+    def digit(n,k):
+        """Return the k-th digit from the right of n for positive integers n and k"""
+        return n//pow(10,k)%10
+    onesdigit_p,tensdigit_o=digit(player_score,0),digit(opponent_score,1)
+    gain_point=3*abs(onesdigit_p-tensdigit_o)
+    return 1 if gain_point<1 else gain_point
     # END PROBLEM 2
 
 
