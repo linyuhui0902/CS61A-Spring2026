@@ -329,7 +329,7 @@ def boar_strategy(score, opponent_score, threshold=11, num_rolls=6):
     points, and returns NUM_ROLLS otherwise. Ignore the Sus Fuss rule.
     """
     # BEGIN PROBLEM 10
-    return num_rolls  # Remove this line once implemented.
+    return 0 if boar_brawl(score,opponent_score) >= threshold else num_rolls
     # END PROBLEM 10
 
 
@@ -338,17 +338,21 @@ def sus_strategy(score, opponent_score, threshold=11, num_rolls=6):
     THRESHOLD points, and returns NUM_ROLLS otherwise. Consider both the Boar Brawl and
     Suss Fuss rules."""
     # BEGIN PROBLEM 11
-    return num_rolls  # Remove this line once implemented.
+    return 0 if (sus_update(0, score, opponent_score)-score)>= threshold else num_rolls
     # END PROBLEM 11
 
 
 def final_strategy(score, opponent_score):
     """Write a brief description of your final strategy.
-
     *** YOUR DESCRIPTION HERE ***
     """
     # BEGIN PROBLEM 12
-    return 6  # Remove this line once implemented.
+    k=0
+    while k<3:
+      if sus_update(k, score, opponent_score)>=GOAL:
+        return k
+      k+=1
+    return 0 if make_averaged(sus_update)(0,score, opponent_score) > make_averaged(sus_update)(6,score, opponent_score) else 6
     # END PROBLEM 12
 
 
