@@ -14,7 +14,12 @@ def composite_identity(f, g):
     False
     """
     "*** YOUR CODE HERE ***"
-
+    def composite(x):
+       if f(g(x)) == g(f(x)):
+           return True
+       else:
+           return False
+    return composite
 
 def sum_digits(y):
     """Return the sum of the digits of non-negative integer y."""
@@ -60,6 +65,14 @@ def count_cond(condition):
     8
     """
     "*** YOUR CODE HERE ***"
+    def requirement(n):
+        i,count=1,0
+        while i <= n:
+            if condition(n,i):
+                count+=1
+            i+=1
+        return count
+    return requirement
 
 
 def multiple(a, b):
