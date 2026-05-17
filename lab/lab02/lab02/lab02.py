@@ -84,6 +84,18 @@ def multiple(a, b):
     42
     """
     "*** YOUR CODE HERE ***"
+    def gcd(x,y): #需要x>y,有顺序要求
+        while y!=0:
+            b=y
+            y=x%y
+            x=b
+        return x
+    def lcm(x,y): #需要x>y,有顺序要求
+        return x*y//gcd(x,y)
+    return lcm(a,b) if a>b else lcm(b,a)
+            
+            
+            
 
 
 
@@ -114,4 +126,17 @@ def cycle(f1, f2, f3):
     19
     """
     "*** YOUR CODE HERE ***"
-
+    def g(n):
+        def h(x):
+            i,result=0,x
+            while i < n:
+                if i%3==0:
+                    result=f1(result)
+                elif i%3 ==1:
+                    result=f2(result)
+                else:
+                    result=f3(result)
+                i+=1
+            return result
+        return h
+    return g
