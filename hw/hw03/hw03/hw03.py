@@ -25,6 +25,10 @@ def num_eights(num):
     True
     """
     "*** YOUR CODE HERE ***"
+    if num < 10:
+        return 1 if num==8 else 0
+    else:
+        return 1+num_eights(num//10) if num % 10==8 else num_eights(num//10)
 
 
 def digit_distance(num):
@@ -47,6 +51,10 @@ def digit_distance(num):
     True
     """
     "*** YOUR CODE HERE ***"
+    if num < 10:
+        return 0
+    else :
+        return abs(num//10%10-num%10)+digit_distance(num//10)
 
 
 def interleaved_sum(num, f_odd, f_even):
@@ -71,6 +79,16 @@ def interleaved_sum(num, f_odd, f_even):
     True
     """
     "*** YOUR CODE HERE ***"
+    def helper(k):
+        """Computes an interleaved sum from k to num (including num)"""
+        if k > num:
+            return 0
+        if k == num:
+            return f_odd(k)
+        else:
+            return f_odd(k)+f_even(k+1)+helper(k+2)
+    return helper(1)
+        
 
 
 def next_smaller_dollar(bill):
@@ -107,6 +125,16 @@ def count_dollars(sum_needed):
     True
     """
     "*** YOUR CODE HERE ***"
+    def count_dollars_partitons(sum_needed,the_largest_dollar):
+        if sum_needed < 0:
+            return 0
+        if sum_needed == 0:
+            return 1
+        if the_largest_dollar==None:
+            return 0
+        return count_dollars_partitons(sum_needed-the_largest_dollar,the_largest_dollar)+ \
+               count_dollars_partitons(sum_needed,next_smaller_dollar(the_largest_dollar))
+    return count_dollars_partitons(sum_needed,100)
 
 
 def next_larger_dollar(bill):
