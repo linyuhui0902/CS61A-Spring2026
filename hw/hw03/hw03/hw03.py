@@ -171,7 +171,16 @@ def count_dollars_upward(sum_needed):
     True
     """
     "*** YOUR CODE HERE ***"
-
+    def count_dollars_partitons(sum_needed,the_smallest_dollar):
+        if sum_needed < 0:
+            return 0
+        if sum_needed == 0:
+            return 1
+        if the_smallest_dollar==None:
+            return 0
+        return count_dollars_partitons(sum_needed-the_smallest_dollar,the_smallest_dollar)+ \
+               count_dollars_partitons(sum_needed,next_larger_dollar(the_smallest_dollar))
+    return count_dollars_partitons(sum_needed,1)
 
 def print_move(origin, destination):
     """Print instructions to move a disk."""
